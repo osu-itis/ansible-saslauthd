@@ -1,2 +1,18 @@
 ---
+- name: config PAM RADIUS auth
+  template: src=pam_radius_auth.conf.j2 dest=/etc/pam_radius_auth.conf owner=root group=root mode=0644
 
+- name: make sasl dir
+  file: path=/etc/postfix/sasl state=directory
+
+- name: copy smtpd.conf
+  copy: src=files/smtpd.conf dest=/etc/postfix/sasl/smtpd.conf owner=root group=root mode=0644
+
+- name: copy smtp PAM config
+  copy: src=files/smtp dest=/etc/pam.d/smtp owner=root group=root mode=0644
+
+- name: copy saslauthd defaults
+  copy: src=files/saslauthd dest=/etc/default/saslauthd owner=root group=root mode=0644
+
+- name: enable service
+  service: name=saslauthd state=restarted enabled=yes
