@@ -1,0 +1,1 @@
+This is a stub playbook.. may make it nicer later if we need to, but this will do for now.  We only use radius auth so no fancy ldap/daemon config is needed.
