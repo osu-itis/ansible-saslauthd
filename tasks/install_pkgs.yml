@@ -1,0 +1,9 @@
+---
+
+- name: install sasl packages
+  apt: name={{item}} state=present update_cache=yes
+  with_items:
+    - libpam-radius-auth
+    - sasl2-bin
+    - libsasl2-modules
+    - cyrus-sasl2-doc
