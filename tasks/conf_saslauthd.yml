@@ -14,5 +14,8 @@
 - name: copy saslauthd defaults
   copy: src=files/saslauthd dest=/etc/default/saslauthd owner=root group=root mode=0644
 
+- name: give postfix permission
+  user: name=postfix append=yes groups=sasl
+
 - name: enable service
   service: name=saslauthd state=restarted enabled=yes
